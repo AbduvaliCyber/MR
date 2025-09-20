@@ -1,73 +1,67 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(EduApp());
+  runApp(FifaApp());
 }
 
-class EduApp extends StatelessWidget {
+class FifaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'O‘quv markazlari',
+      title: 'FIFA Davlatlari',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         scaffoldBackgroundColor: Colors.grey[100],
       ),
-      home: EduHomePage(),
+      home: FifaHomePage(),
     );
   }
 }
 
-class EduHomePage extends StatefulWidget {
+class FifaHomePage extends StatefulWidget {
   @override
-  _EduHomePageState createState() => _EduHomePageState();
+  _FifaHomePageState createState() => _FifaHomePageState();
 }
 
-class _EduHomePageState extends State<EduHomePage> {
-  // 📚 O‘quv markazlari ro‘yxati
-  List<Map<String, String>> markazlar = [
+class _FifaHomePageState extends State<FifaHomePage> {
+  // 🌍 Davlatlar ro‘yxati
+  List<Map<String, String>> davlatlar = [
     {
-      "nom": "Sky English",
-      "rasm":
-      "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      "info": "Ingliz tili kurslari, IELTS va CEFR tayyorlov markazi.",
-      "ustoz": "Eng mashhur ustoz: Mr. John",
+      "nom": "Ispaniya",
+      "rasm": "https://flagcdn.com/w320/es.png",
+      "info": "Futbol bo‘yicha 2010-yil Jahon chempioni.",
+      "ustoz": "Eng mashhur futbolchi: Sergio Ramos",
     },
     {
-      "nom": "IT Park Academy",
-      "rasm":
-      "https://cdn-icons-png.flaticon.com/512/2721/2721292.png",
-      "info": "Dasturlash, web va mobil ilovalar bo‘yicha kurslar.",
-      "ustoz": "Eng mashhur ustoz: Akmal Programmer",
+      "nom": "Argentina",
+      "rasm": "https://flagcdn.com/w320/ar.png",
+      "info": "2022-yilgi Jahon chempioni.",
+      "ustoz": "Eng mashhur futbolchi: Lionel Messi",
     },
     {
-      "nom": "Najot Ta'lim",
-      "rasm":
-      "https://cdn-icons-png.flaticon.com/512/3135/3135810.png",
-      "info": "Frontend, Backend, Python, Flutter, Grafik dizayn.",
-      "ustoz": "Eng mashhur ustoz: Azizbek Najotov",
+      "nom": "Portugaliya",
+      "rasm": "https://flagcdn.com/w320/pt.png",
+      "info": "2016-yilgi Yevropa chempioni.",
+      "ustoz": "Eng mashhur futbolchi: Cristiano Ronaldo",
     },
     {
-      "nom": "Cambridge Learning Center",
-      "rasm":
-      "https://cdn-icons-png.flaticon.com/512/3135/3135773.png",
-      "info": "Bolalar va kattalar uchun ingliz tili kurslari.",
-      "ustoz": "Eng mashhur ustoz: Miss Sarah",
+      "nom": "Fransiya",
+      "rasm": "https://flagcdn.com/w320/fr.png",
+      "info": "1998 va 2018-yil Jahon chempioni.",
+      "ustoz": "Eng mashhur futbolchi: Kylian Mbappé",
     },
     {
-      "nom": "Matematika Pro",
-      "rasm":
-      "https://cdn-icons-png.flaticon.com/512/3135/3135755.png",
-      "info": "Oliy matematika, maktab imtihonlariga tayyorlov kurslari.",
-      "ustoz": "Eng mashhur ustoz: Professor Karimov",
+      "nom": "Germaniya",
+      "rasm": "https://flagcdn.com/w320/de.png",
+      "info": "4 marta Jahon chempioni (1954, 1974, 1990, 2014).",
+      "ustoz": "Eng mashhur futbolchi: Manuel Neuer",
     },
     {
-      "nom": "ABU-TECH",
-      "rasm":
-      "https://cdn-icons-png.flaticon.com/512/3135/3135768.png", // logotip sifatida texnika ikonkasi
-      "info": "IT, Robototexnika, va Zamonaviy texnologiyalar kurslari.",
-      "ustoz": "Eng mashhur ustoz: Mr. Otabek",
+      "nom": "O‘zbekiston",
+      "rasm": "https://flagcdn.com/w320/uz.png",
+      "info": "Markaziy Osiyodagi eng faol futbol davlatlaridan biri.",
+      "ustoz": "Eng mashhur futbolchi: Eldor Shomurodov",
     },
   ];
 
@@ -76,7 +70,7 @@ class _EduHomePageState extends State<EduHomePage> {
   void _qidiruv() async {
     final natija = await showSearch(
       context: context,
-      delegate: EduSearchDelegate(markazlar),
+      delegate: FifaSearchDelegate(davlatlar),
     );
 
     if (natija != null) {
@@ -90,12 +84,12 @@ class _EduHomePageState extends State<EduHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.green,
         title: Row(
           children: [
-            Icon(Icons.school, color: Colors.white),
+            Icon(Icons.flag, color: Colors.white),
             SizedBox(width: 8),
-            Text("O‘quv markazlari"),
+            Text("FIFA Davlatlari"),
           ],
         ),
         actions: [
@@ -108,18 +102,18 @@ class _EduHomePageState extends State<EduHomePage> {
       body: Center(
         child: tanlangan == null
             ? Text(
-          "Qidiruvdan biror o‘quv markazni tanlang 📚",
+          "Qidiruvdan biror davlatni tanlang 🌍",
           style: TextStyle(fontSize: 18, color: Colors.grey[700]),
         )
             : SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Logotip
+              // Bayroq
               Image.network(
                 tanlangan!["rasm"]!,
                 width: 150,
-                height: 150,
+                height: 100,
                 fit: BoxFit.contain,
               ),
               SizedBox(height: 16),
@@ -130,20 +124,20 @@ class _EduHomePageState extends State<EduHomePage> {
                 TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              // Yo‘nalish
+              // Ma’lumot
               Text(
                 tanlangan!["info"]!,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18, color: Colors.grey[800]),
               ),
               SizedBox(height: 20),
-              // Eng mashhur ustoz
+              // Eng mashhur futbolchi
               Text(
                 tanlangan!["ustoz"]!,
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.blue),
+                    color: Colors.green),
               ),
             ],
           ),
@@ -154,10 +148,10 @@ class _EduHomePageState extends State<EduHomePage> {
 }
 
 // 🔍 Qidiruv SearchDelegate
-class EduSearchDelegate extends SearchDelegate {
-  final List<Map<String, String>> markazlar;
+class FifaSearchDelegate extends SearchDelegate {
+  final List<Map<String, String>> davlatlar;
 
-  EduSearchDelegate(this.markazlar);
+  FifaSearchDelegate(this.davlatlar);
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -183,25 +177,25 @@ class EduSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    final results = markazlar
+    final results = davlatlar
         .where((j) => j["nom"]!.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
     return ListView.builder(
       itemCount: results.length,
       itemBuilder: (context, index) {
-        final markaz = results[index];
+        final davlat = results[index];
         return ListTile(
           leading: Image.network(
-            markaz["rasm"]!,
+            davlat["rasm"]!,
             width: 50,
-            height: 50,
+            height: 30,
             fit: BoxFit.contain,
           ),
-          title: Text(markaz["nom"]!),
-          subtitle: Text(markaz["info"]!),
+          title: Text(davlat["nom"]!),
+          subtitle: Text(davlat["info"]!),
           onTap: () {
-            close(context, markaz);
+            close(context, davlat);
           },
         );
       },
@@ -210,25 +204,25 @@ class EduSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestions = markazlar
+    final suggestions = davlatlar
         .where((j) => j["nom"]!.toLowerCase().startsWith(query.toLowerCase()))
         .toList();
 
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: (context, index) {
-        final markaz = suggestions[index];
+        final davlat = suggestions[index];
         return ListTile(
           leading: Image.network(
-            markaz["rasm"]!,
+            davlat["rasm"]!,
             width: 40,
-            height: 40,
+            height: 25,
             fit: BoxFit.contain,
           ),
-          title: Text(markaz["nom"]!),
-          subtitle: Text(markaz["info"]!),
+          title: Text(davlat["nom"]!),
+          subtitle: Text(davlat["info"]!),
           onTap: () {
-            query = markaz["nom"]!;
+            query = davlat["nom"]!;
             showResults(context);
           },
         );
